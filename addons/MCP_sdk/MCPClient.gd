@@ -11,6 +11,7 @@ class_name MCPClient
 
 @export_tool_button("Connect server") var _connect = connect_to_server
 @export_tool_button("Close server") var _close = stop
+@export_tool_button("Tool list") var _print_tools = tool_list
 
 signal connection(is_connect: bool)
 signal log_record(log: String)
@@ -137,7 +138,9 @@ func tool_list():
 		if tools_request[1].is_empty():
 			push_error("Unable to retrieve the tools list.")
 			return []
-		return tools_request[1]["tools"]
+		var tools = tools_request[1]["tools"]
+		print(tools)
+		return tools
 
 ## Use tool
 func call_tool(tool_name : String, arguments : Dictionary = {}):
